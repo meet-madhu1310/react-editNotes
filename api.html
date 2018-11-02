@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>API</title>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+
+    let url = "https://raw.githubusercontent.com/DylanCh/AlexaJobSearch/master/Indeed.json";
+
+    const headers = {
+      "Access-Control-Allow-Origin" : "*",
+      "Accept" : "application/json"
+    };
+
+    $.ajax(url,{
+      method: 'GET',
+      crossDomain: true,
+      headers :headers,
+      sucess : (result)=>{
+        var response = "";
+        var jobtitle = result.results[0].jobtitle;
+        var lat = result.results[0].latitude;
+        var lon = result.results[0].longitude;
+        response= `${jobtitle} coordinates: ${lat}, ${lon}`;
+        console.log(response);
+      },
+      error: (xhr,status,e)=>{
+        console.log(status);
+      }
+    });
+
+  </script>
+
+</head>
+<body>
+
+</body>
+</html>
